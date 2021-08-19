@@ -1,5 +1,6 @@
 import { Row, Col } from "antd";
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { Menu } from "../assets/icons/menu";
 
@@ -18,10 +19,14 @@ export const MenuIcon = styled(Menu)`
   }
 `;
 
-export const Header = () => (
-  <HeaderWrapper>
-    <Col>
-      <MenuIcon />
-    </Col>
-  </HeaderWrapper>
-);
+export const Header = () => {
+  const history = useHistory();
+
+  return (
+    <HeaderWrapper>
+      <Col>
+        <MenuIcon onClick={() => history.push('companies')} />
+      </Col>
+    </HeaderWrapper>
+  )
+};
