@@ -23,5 +23,14 @@ export const typeDefs = gql`
       address: String!
       chosenBenefits: [String]!
     ): Company
+
+    updateCompany(
+      id: String!
+      name: String!
+      tradingName: String!
+      cnpj: String!
+      address: String!
+      chosenBenefits: [String]!
+    ): Company
   }
 `;

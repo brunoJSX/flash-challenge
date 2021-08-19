@@ -17,4 +17,8 @@ export class CompaniesAPI extends DataSource {
   async createCompany(args) {
     return this.model.create(args);
   }
+
+  async updateCompany(args) {
+    return this.model.updateOne({ _id: args.id }, { $set: { ...args } });
+  }
 }
