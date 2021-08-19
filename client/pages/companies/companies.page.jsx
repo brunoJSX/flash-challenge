@@ -69,11 +69,13 @@ export const CompaniesPage = () => {
         <Col>
           <PageTitle>Empresas</PageTitle>
         </Col>
+
         <Col>
           <Button
             type="primary"
             onClick={handleCreateCompany}
             color="secondary"
+            style={{ marginLeft: '10px' }}
           >
             Criar empresa
           </Button>
