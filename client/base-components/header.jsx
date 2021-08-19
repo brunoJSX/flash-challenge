@@ -25,7 +25,7 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <Col>
-        <MenuIcon onClick={() => history.push('companies')} />
+        <MenuIcon onClick={() => history.push('/companies')} />
       </Col>
     </HeaderWrapper>
   )
