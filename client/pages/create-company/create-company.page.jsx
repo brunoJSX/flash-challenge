@@ -28,6 +28,8 @@ export const CreateCompanyPage = () => {
 
   const handleSubmit = async (values) => {
     try {
+      values.cnpj = values.cnpj.replace(/\D/g,'');
+
       await createCompany({ variables: values });
       form.resetFields();
       message.success("Empresa criada com sucesso!");
