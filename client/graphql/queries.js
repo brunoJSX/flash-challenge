@@ -12,3 +12,16 @@ export const GET_ALL_COMPANIES = gql`
     }
   }
 `;
+
+export const FIND_COMPANY_BY_ID = gql`
+  query FindCompanyById($id: String!) {
+    findCompanyById(id: $id) {
+      id
+      name
+      cnpj
+      tradingName
+      address
+      chosenBenefits
+    }
+  }
+`;
