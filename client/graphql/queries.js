@@ -9,7 +9,6 @@ export const GET_ALL_COMPANIES = gql`
       tradingName
       address
       chosenBenefits
-      employees
     }
   }
 `;
