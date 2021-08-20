@@ -50,5 +50,5 @@ The client will start on `http://localhost:1234`
 </h2>
 
 <div align="center">
- If you liked it, rate it with a beautiful star2, that way you will encourage me to publish more and better projects.
+ If you liked it, rate it with a beautiful 🌟, that way you will encourage me to publish more and better projects.
 </div>
