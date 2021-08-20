@@ -2,6 +2,7 @@ import {
   getAllCompanies,
   createCompany,
   updateCompany,
+  findByIdAndDelete,
   findCompanyById,
 } from "../company/company.resolver.js";
 
@@ -13,5 +14,6 @@ export const resolvers = {
   Mutation: {
     createCompany,
     updateCompany,
+    findByIdAndDelete,
   },
 };

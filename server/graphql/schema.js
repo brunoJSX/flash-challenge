@@ -32,5 +32,7 @@ export const typeDefs = gql`
       address: String!
       chosenBenefits: [String]!
     ): Company
+
+    findByIdAndDelete(id: String!): Company
   }
 `;

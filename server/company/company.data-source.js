@@ -21,4 +21,8 @@ export class CompaniesAPI extends DataSource {
   async updateCompany(args) {
     return this.model.updateOne({ _id: args.id }, { $set: { ...args } });
   }
+
+  async findByIdAndDelete(args) {
+    return this.model.findOneAndDelete({ _id: args.id });
+  }
 }

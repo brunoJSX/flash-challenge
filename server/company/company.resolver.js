@@ -6,6 +6,10 @@ export async function updateCompany(_parent, args, { dataSources }) {
   return dataSources.companiesAPI.updateCompany(args);
 }
 
+export async function findByIdAndDelete(_parent, args, { dataSources }) {
+  return dataSources.companiesAPI.findByIdAndDelete(args);
+}
+
 export async function getAllCompanies(_parent, _args, { dataSources }) {
   return dataSources.companiesAPI.getAllCompanies();
 }
