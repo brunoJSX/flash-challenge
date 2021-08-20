@@ -3,7 +3,7 @@
 </h1>
 
 <div align="center">
- "Ao infinito e além 🚀"
+ "To infinity and beyond 🚀"
 </div>
 
 &nbsp;
@@ -46,9 +46,9 @@ The client will start on `http://localhost:1234`
 &nbsp;
 
 <h2 align="center">
- Gostou? 🥳🚀
+ Liked? 🥳🚀
 </h2>
 
 <div align="center">
- Se gostou avalie com uma linda 🌟, dessa forma você irá me incentivar a publicar mais projetos cada vez melhores.
+ If you liked it, rate it with a beautiful star2, that way you will encourage me to publish more and better projects.
 </div>
