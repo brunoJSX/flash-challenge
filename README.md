@@ -8,6 +8,10 @@
 
 &nbsp;
 
+![Preview App](https://i.imgur.com/85nCx36.gif)
+
+&nbsp;
+
 ## Getting Started
 
 Install node, yarn, docker and docker-compose.
