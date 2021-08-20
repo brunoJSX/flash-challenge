@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import uniqueValidator from 'mongoose-unique-validator'
 
 const CompanySchema = new mongoose.Schema({
   name: {
@@ -15,6 +16,7 @@ const CompanySchema = new mongoose.Schema({
     type: String,
     required: [true, "CNPJ é obrigatório"],
     match: [/^[0-9]{14}$/, "CNPJ deve possuir apenas números e 14 caracteres"],
+    unique: true,
   },
   address: {
     type: String,
@@ -25,6 +27,8 @@ const CompanySchema = new mongoose.Schema({
     type: Array,
   },
 });
+
+CompanySchema.plugin(uniqueValidator, { message: 'deve ser único' });
 
 export default mongoose.models.companies ||
   mongoose.model("companies", CompanySchema);
