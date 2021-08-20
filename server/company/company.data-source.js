@@ -25,4 +25,8 @@ export class CompaniesAPI extends DataSource {
   async findByIdAndDelete(args) {
     return this.model.findOneAndDelete({ _id: args.id });
   }
+
+  async findByCnpj(cnpj) {
+    return this.model.findOne({ cnpj });
+  }
 }

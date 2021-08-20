@@ -35,4 +35,20 @@ describe('company resolvers', () => {
 
         await expect(company._id).toBeDefined();
     });
+
+    it('should not be able to create a new company with a cnpj already in use', async () => {
+        const companyData = {
+            name: 'AMAZON SERVICOS DE VAREJO DO BRASIL LTDA.',
+            tradingName: 'AMAZON.COM.BR',
+            cnpj: '15436940000103',
+            address: 'Avenida Presidente Juscelino Kubitschek, 2041',
+            chosenBenefits: ['vt']
+        };
+    
+        await createCompany(null, companyData, { dataSources });
+    
+        await expect(
+            createCompany(null, companyData, { dataSources })
+        ).rejects.toBeInstanceOf(Error);
+    });
 });

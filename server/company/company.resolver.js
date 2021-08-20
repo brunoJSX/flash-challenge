@@ -3,6 +3,12 @@ export async function createCompany(_parent, args, { dataSources }) {
     throw new Error('Missing company');
   }
 
+  const companyFinded = await dataSources.companiesAPI.findByCnpj(args.cnpj);
+
+  if (companyFinded) {
+    throw new Error('Cnpj is already in use');
+  }
+
   return dataSources.companiesAPI.createCompany(args);
 }
 
