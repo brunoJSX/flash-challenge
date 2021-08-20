@@ -19,6 +19,7 @@ export const theme = {
     button: {
       primary: "#0D8059",
       secondary: "#FF853E",
+      danger: "red",
     },
   },
   background: {

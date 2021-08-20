@@ -51,3 +51,16 @@ export const UPDATE_COMPANY = gql`
     }
   }
 `;
+
+export const FIND_COMPANY_BY_ID_AND_DELETE = gql`
+  mutation FindByIdAndDelete($id: String!) {
+    findByIdAndDelete(id: $id) {
+      id
+      name
+      cnpj
+      tradingName
+      address
+      chosenBenefits
+    }
+  }
+`;

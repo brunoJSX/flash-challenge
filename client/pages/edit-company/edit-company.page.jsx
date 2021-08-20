@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { Form, Input, Select, Divider, Row, Col, message } from "antd";
 
@@ -10,7 +10,7 @@ import { Body } from "./edit-company.styles";
 import { Button } from "../../base-components/button";
 import { PageTitle } from "../../base-components/page-title";
 
-import { UPDATE_COMPANY } from "../../graphql/mutations";
+import { UPDATE_COMPANY, FIND_COMPANY_BY_ID_AND_DELETE } from "../../graphql/mutations";
 import { FIND_COMPANY_BY_ID } from "../../graphql/queries";
 
 const benefits = [
@@ -30,31 +30,47 @@ const benefits = [
 
 export const EditCompanyPage = () => {
   const [form] = Form.useForm();
-  const { id } = useParams();
+  const { id: companyId } = useParams();
+  const history = useHistory();
 
   const { loading: companyLoading, data: companyData } = useQuery(
     FIND_COMPANY_BY_ID,
     {
       fetchPolicy: 'cache-and-network',
       onError: (err) => message.error(err.message),
-      variables: { id }
+      variables: { id: companyId }
     }
   );
 
 
   const [editCompany, { loading: creating }] = useMutation(UPDATE_COMPANY);
+  const [deleteCompany, { loading: deleting }] = useMutation(
+    FIND_COMPANY_BY_ID_AND_DELETE
+  );
 
   const handleSubmit = async (values) => {
     try {
       values.cnpj = values.cnpj.replace(/\D/g,'');
 
-      await editCompany({ variables: { id, ...values } });
+      await editCompany({ variables: { id: companyId, ...values } });
 
       message.success("Empresa atualizada com sucesso!");
     } catch (err) {
       message.error(err.message);
     }
   };
+
+  const handleDelete = useCallback(async () => {
+    try {
+      await deleteCompany({ variables: { id: companyId } });
+
+      history.push('/companies');
+
+      message.success("Empresa excluída com sucesso!");
+    } catch (err) {
+      message.error(err.message);
+    }
+  }, [deleteCompany, companyId, message]);
 
   const onChangeCnpj = useCallback((event) => {
     event.currentTarget.maxLength = 18;
@@ -150,7 +166,19 @@ export const EditCompanyPage = () => {
                       />
                     </Form.Item>
                     <Divider />
+
                     <Form.Item>
+                      <Button
+                        type='primary' 
+                        htmlType="button"
+                        color="danger" 
+                        style={{ marginRight: '10px' }}
+                        onClick={handleDelete}
+                        loading={deleting}
+                      >
+                        Excluir
+                      </Button>
+
                       <Button
                         type="primary"
                         htmlType="submit"
