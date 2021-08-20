@@ -7,6 +7,8 @@ import { PageTitle } from "../../base-components/page-title";
 import { Row, Col, message } from "antd";
 import { GET_ALL_COMPANIES } from "../../graphql/queries";
 
+import { cnpjMask } from "../../utils/mask";
+
 const columns = [
   {
     title: "Nome",
@@ -86,7 +88,12 @@ export const CompaniesPage = () => {
             pagination={{ pageSize: 6 }}
             rowKey={(record) => record.id}
             columns={columns}
-            dataSource={companiesData?.getAllCompanies ?? []}
+            dataSource={
+              companiesData?.getAllCompanies.map(company => ({
+                ...company,
+                cnpj: cnpjMask(company.cnpj),
+              })) ?? []
+            }
             onRow={handleRow}
           />
         </Col>

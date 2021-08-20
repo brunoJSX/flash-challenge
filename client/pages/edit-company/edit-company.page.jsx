@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import { Form, Input, Select, Divider, Row, Col, message } from "antd";
+
+import { cnpjMask } from "../../utils/mask";
 
 import { Body } from "./edit-company.styles";
 
@@ -54,6 +56,11 @@ export const EditCompanyPage = () => {
     }
   };
 
+  const onChangeCnpj = useCallback((event) => {
+    event.currentTarget.maxLength = 18;
+    return cnpjMask(event.currentTarget.value);
+  }, [cnpjMask]);
+
   return (
     <>
       {!companyLoading && (
@@ -70,7 +77,10 @@ export const EditCompanyPage = () => {
                     onFinish={handleSubmit} 
                     form={form} 
                     layout="vertical"
-                    initialValues={companyData?.findCompanyById}
+                    initialValues={{ 
+                      ...companyData?.findCompanyById,
+                      cnpj: cnpjMask(companyData?.findCompanyById.cnpj),
+                    }}
                   >
                     <Form.Item
                       label="Nome"
@@ -99,6 +109,7 @@ export const EditCompanyPage = () => {
                     <Form.Item
                       label="CNPJ"
                       name="cnpj"
+                      getValueFromEvent={onChangeCnpj}
                       rules={[
                         {
                           required: true,

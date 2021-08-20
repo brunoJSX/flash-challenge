@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useMutation } from "@apollo/client";
 import { Form, Input, Select, Divider, Row, Col, message } from "antd";
+
+import { cnpjMask } from "../../utils/mask";
+
+import { CREATE_COMPANY } from "../../graphql/mutations";
+
 import { Body } from "./create-company.styles";
+
 import { Button } from "../../base-components/button";
 import { PageTitle } from "../../base-components/page-title";
-import { CREATE_COMPANY } from "../../graphql/mutations";
 
 const benefits = [
   {
@@ -37,6 +42,11 @@ export const CreateCompanyPage = () => {
       message.error(err.message);
     }
   };
+
+  const onChangeCnpj = useCallback((event) => {
+    event.currentTarget.maxLength = 18;
+    return cnpjMask(event.currentTarget.value);
+  }, [cnpjMask]);
 
   return (
     <>
@@ -76,6 +86,7 @@ export const CreateCompanyPage = () => {
                   <Form.Item
                     label="CNPJ"
                     name="cnpj"
+                    getValueFromEvent={onChangeCnpj}
                     rules={[
                       {
                         required: true,
