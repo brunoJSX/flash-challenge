@@ -1,3 +1,13 @@
+<h1 align="center">
+  Flash Challenge
+</h1>
+
+<div align="center">
+ "Ao infinito e além 🚀"
+</div>
+
+&nbsp;
+
 ## Getting Started
 
 Install node, yarn, docker and docker-compose.
@@ -5,7 +15,7 @@ Install node, yarn, docker and docker-compose.
 Run docker-compose:
 
 ```shell
-docker-compose up
+docker-compose up -d
 ```
 
 It will run a local mongodb on port 27017 and populate the collection 'companies' on the database 'flash'
@@ -28,3 +38,13 @@ yarn client
 ```
 
 The client will start on `http://localhost:1234`
+
+&nbsp;
+
+<h2 align="center">
+ Gostou? 🥳🚀
+</h2>
+
+<div align="center">
+ Se gostou avalie com uma linda 🌟, dessa forma você irá me incentivar a publicar mais projetos cada vez melhores.
+</div>
