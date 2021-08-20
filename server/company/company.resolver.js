@@ -1,4 +1,8 @@
 export async function createCompany(_parent, args, { dataSources }) {
+  if (!args) {
+    throw new Error('Missing company');
+  }
+
   return dataSources.companiesAPI.createCompany(args);
 }
 
