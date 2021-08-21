@@ -1,8 +1,4 @@
 export async function createCompany(_parent, args, { dataSources }) {
-  if (!args) {
-    throw new Error('Missing company');
-  }
-
   const companyFinded = await dataSources.companiesAPI.findByCnpj(args.cnpj);
 
   if (companyFinded) {

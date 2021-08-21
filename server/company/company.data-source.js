@@ -19,7 +19,11 @@ export class CompaniesAPI extends DataSource {
   }
 
   async updateCompany(args) {
-    return this.model.updateOne({ _id: args.id }, { $set: { ...args } });
+    return this.model.findByIdAndUpdate(
+      args.id, 
+      { $set: { ...args } },
+      { new: true },
+    );
   }
 
   async findByIdAndDelete(args) {

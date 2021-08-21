@@ -1,6 +1,6 @@
 import dbHandler from './db-handler';
 
-import { createCompany } from '../company/company.resolver';
+import { createCompany, updateCompany } from '../company/company.resolver';
 
 import { CompaniesAPI } from "../company/company.data-source.js";
 import companyModel from '../company/company.model';
@@ -50,5 +50,24 @@ describe('company resolvers', () => {
         await expect(
             createCompany(null, companyData, { dataSources })
         ).rejects.toBeInstanceOf(Error);
+    });
+
+    it('should be able to update a company', async () => {
+        const companyData = {
+            name: 'AMAZON SERVICOS DE VAREJO DO BRASIL LTDA.',
+            tradingName: 'AMAZON.COM.BR',
+            cnpj: '15436940000103',
+            address: 'Avenida Presidente Juscelino Kubitschek, 2041',
+            chosenBenefits: ['vt']
+        };
+    
+        let company = await createCompany(null, companyData, { dataSources });
+
+        const companyUpdated = await updateCompany(null, { 
+            id: company._id,
+            cnpj: '15436940000104',
+        }, { dataSources });
+
+        await expect(companyUpdated.cnpj).toBe('15436940000104');
     });
 });
