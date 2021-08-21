@@ -12,7 +12,7 @@ export async function updateCompany(_parent, args, { dataSources }) {
   const companyToUpdate = await dataSources.companiesAPI.findById(args.id);
 
   if (!companyToUpdate) {
-    throw new Error('Missing company');
+    throw new Error('Empresa não encontrada');
   }
   
   const companyWithSameCnpj = await dataSources.companiesAPI.findByCnpj(args.cnpj);
@@ -32,7 +32,7 @@ export async function findByIdAndDelete(_parent, args, { dataSources }) {
   const companyFinded = await dataSources.companiesAPI.findById(args.id);
 
   if (!companyFinded) {
-    throw new Error('Missing company');
+    throw new Error('Empresa não encontrada');
   }
 
   return dataSources.companiesAPI.findByIdAndDelete(args);
