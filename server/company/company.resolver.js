@@ -9,9 +9,19 @@ export async function createCompany(_parent, args, { dataSources }) {
 }
 
 export async function updateCompany(_parent, args, { dataSources }) {
-  const companyFinded = await dataSources.companiesAPI.findByCnpj(args.cnpj);
+  const companyToUpdate = await dataSources.companiesAPI.findById(args.id);
 
-  if (companyFinded && companyFinded._id !== args.id) {
+  if (!companyToUpdate) {
+    throw new Error('Missing company');
+  }
+  
+  const companyWithSameCnpj = await dataSources.companiesAPI.findByCnpj(args.cnpj);
+
+  // TODO: Has bug here
+  if (
+    companyWithSameCnpj && 
+    companyWithSameCnpj !== companyToUpdate
+  ) {
     throw new Error('Cnpj já está em uso');
   }
 

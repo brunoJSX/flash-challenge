@@ -55,6 +55,15 @@ describe('company resolvers', () => {
         expect(companyUpdated.cnpj).toBe('15436940000104');
     });
 
+    it('should not be able to update non-existing company', async () => {
+        await expect(
+            updateCompany(null, { 
+                id: 'non-existing-id',
+                cnpj: '15436940000104',
+            }, { dataSources })
+        ).rejects.toBeInstanceOf(Error);
+    });
+
     it('should not be able to update a company with a cnpj already in use', async () => {
         let company = await createCompany(null, {
             name: 'AMAZON SERVICOS DE VAREJO DO BRASIL LTDA.',
