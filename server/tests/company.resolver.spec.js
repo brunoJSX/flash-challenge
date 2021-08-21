@@ -1,4 +1,4 @@
-import { createCompany, updateCompany } from '../company/company.resolver';
+import { createCompany, findByIdAndDelete, getAllCompanies, updateCompany } from '../company/company.resolver';
 import CompanyMock from "./company.mock";
 
 let dataSources = {};
@@ -85,5 +85,36 @@ describe('company resolvers', () => {
                 cnpj: '15436940000104',
             }, { dataSources })
         ).rejects.toBeInstanceOf(Error);
+    });
+
+    it('should be able to delete a company', async () => {
+        let company = await createCompany(null, {
+            name: 'AMAZON SERVICOS DE VAREJO DO BRASIL LTDA.',
+            tradingName: 'AMAZON.COM.BR',
+            cnpj: '15436940000103',
+            address: 'Avenida Presidente Juscelino Kubitschek, 2041',
+            chosenBenefits: ['vt']
+        }, { dataSources });
+
+        await createCompany(null, {
+            name: 'AMAZON SERVICOS DE VAREJO DO BRASIL LTDA.',
+            tradingName: 'AMAZON.COM.BR',
+            cnpj: '15436940000104',
+            address: 'Avenida Presidente Juscelino Kubitschek, 2041',
+            chosenBenefits: ['vt']
+        }, { dataSources });
+
+        const companyDeleted = await findByIdAndDelete(null, { id: company._id }, { dataSources })
+        
+        const companies = await getAllCompanies(null, null, { dataSources });
+
+        expect(companyDeleted).toEqual(company);
+        expect(companies).toEqual(
+            expect.not.arrayContaining([
+                expect.objectContaining({
+                    _id: company._id
+                })
+            ])
+        );
     });
 });

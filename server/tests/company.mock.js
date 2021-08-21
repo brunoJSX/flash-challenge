@@ -32,6 +32,22 @@ class CompanyMock {
 
         return companyFinded || null;
     }
+
+    async findByIdAndDelete(args) {
+        const companyFinded = this.companies.find(c => c._id === args.id);
+
+        if (!companyFinded) {
+            return null;
+        }
+
+        this.companies = this.companies.filter(c => c._id !== args.id);
+
+        return companyFinded;
+    }
+
+    async getAllCompanies() {
+        return this.companies;
+    }
 }
 
 export default CompanyMock;
