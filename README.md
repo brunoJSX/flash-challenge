@@ -45,6 +45,14 @@ The client will start on `http://localhost:1234`
 
 &nbsp;
 
+**Server tests**
+
+```shell
+  yarn server:test
+```
+
+&nbsp;
+
 <h2 align="center">
  Liked? 🥳🚀
 </h2>
