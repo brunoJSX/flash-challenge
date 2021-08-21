@@ -19,6 +19,12 @@ export async function updateCompany(_parent, args, { dataSources }) {
 }
 
 export async function findByIdAndDelete(_parent, args, { dataSources }) {
+  const companyFinded = await dataSources.companiesAPI.findById(args.id);
+
+  if (!companyFinded) {
+    throw new Error('Missing company');
+  }
+
   return dataSources.companiesAPI.findByIdAndDelete(args);
 }
 

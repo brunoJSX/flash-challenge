@@ -104,7 +104,11 @@ describe('company resolvers', () => {
             chosenBenefits: ['vt']
         }, { dataSources });
 
-        const companyDeleted = await findByIdAndDelete(null, { id: company._id }, { dataSources })
+        const companyDeleted = await findByIdAndDelete(
+            null, 
+            { id: company._id }, 
+            { dataSources }
+        );
         
         const companies = await getAllCompanies(null, null, { dataSources });
 
@@ -116,5 +120,11 @@ describe('company resolvers', () => {
                 })
             ])
         );
+    });
+
+    it('should not be able to delete non-existing company', async () => {
+        await expect(
+            findByIdAndDelete(null, { id: 'non-existing-id' }, { dataSources })
+        ).rejects.toBeInstanceOf(Error);
     });
 });

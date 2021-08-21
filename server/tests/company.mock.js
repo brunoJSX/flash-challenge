@@ -48,6 +48,12 @@ class CompanyMock {
     async getAllCompanies() {
         return this.companies;
     }
+
+    async findById(id) {
+        const companyFinded = this.companies.find(c => c._id === id);
+
+        return companyFinded || null;
+    }
 }
 
 export default CompanyMock;
