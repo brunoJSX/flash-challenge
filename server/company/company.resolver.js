@@ -9,6 +9,12 @@ export async function createCompany(_parent, args, { dataSources }) {
 }
 
 export async function updateCompany(_parent, args, { dataSources }) {
+  const companyFinded = await dataSources.companiesAPI.findByCnpj(args.cnpj);
+
+  if (companyFinded && companyFinded._id !== args.id) {
+    throw new Error('Cnpj já está em uso');
+  }
+
   return dataSources.companiesAPI.updateCompany(args);
 }
 
