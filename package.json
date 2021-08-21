@@ -12,7 +12,7 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "client": "parcel client/index.html",
-    "server:test": "jest --runInBand ./server/test"
+    "server:test": "jest ./server/test"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
@@ -20,7 +20,6 @@
     "@babel/preset-env": "^7.15.0",
     "babel-jest": "^27.0.6",
     "jest": "^27.0.6",
-    "mongodb-memory-server": "^7.3.6",
     "nodemon": "^2.0.7",
     "parcel-bundler": "^1.12.5"
   },

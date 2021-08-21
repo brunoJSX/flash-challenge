@@ -2,7 +2,7 @@ export async function createCompany(_parent, args, { dataSources }) {
   const companyFinded = await dataSources.companiesAPI.findByCnpj(args.cnpj);
 
   if (companyFinded) {
-    throw new Error('Cnpj is already in use');
+    throw new Error('Cnpj já está em uso');
   }
 
   return dataSources.companiesAPI.createCompany(args);
