@@ -17,10 +17,9 @@ export async function updateCompany(_parent, args, { dataSources }) {
   
   const companyWithSameCnpj = await dataSources.companiesAPI.findByCnpj(args.cnpj);
 
-  // TODO: Has bug here
   if (
     companyWithSameCnpj && 
-    companyWithSameCnpj !== companyToUpdate
+    String(companyWithSameCnpj._id) !== String(companyToUpdate._id)
   ) {
     throw new Error('Cnpj já está em uso');
   }
