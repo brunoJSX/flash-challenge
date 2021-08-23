@@ -1,4 +1,9 @@
-import { createCompany, findByIdAndDelete, getAllCompanies, updateCompany } from '../company/company.resolver';
+import { 
+    createCompany, 
+    findByIdAndDelete, 
+    getAllCompanies, 
+    updateCompany 
+} from '../company/company.resolver';
 import CompanyMock from "./company.mock";
 
 let dataSources = {};
