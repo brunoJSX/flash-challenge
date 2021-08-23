@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { useHistory } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { Form, Input, Select, Divider, Row, Col, message } from "antd";
 
@@ -28,6 +29,7 @@ const benefits = [
 
 export const CreateCompanyPage = () => {
   const [form] = Form.useForm();
+  const history = useHistory();
 
   const [createCompany, { loading: creating }] = useMutation(CREATE_COMPANY);
 
@@ -38,6 +40,8 @@ export const CreateCompanyPage = () => {
       await createCompany({ variables: values });
       form.resetFields();
       message.success("Empresa criada com sucesso!");
+
+      history.push('/companies');
     } catch (err) {
       message.error(err.message);
     }
