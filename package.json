@@ -12,7 +12,7 @@
   "scripts": {
     "server": "nodemon server/index.js",
     "client": "parcel client/index.html",
-    "server:test": "jest ./server/test"
+    "test": "jest ./server/test"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

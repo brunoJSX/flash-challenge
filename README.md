@@ -48,7 +48,7 @@ The client will start on `http://localhost:1234`
 **Server tests**
 
 ```shell
-  yarn server:test
+  yarn test
 ```
 
 &nbsp;
