@@ -27,7 +27,7 @@ export class CompaniesAPI extends DataSource {
   }
 
   async findByIdAndDelete(args) {
-    return this.model.findByAndDelete(args.id);
+    return this.model.findByIdAndDelete(args.id);
   }
 
   async findByCnpj(cnpj) {
